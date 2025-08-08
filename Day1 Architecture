@@ -1,0 +1,19 @@
+FinSight Architecture (v1.0)
+
+Goal: Cost-optimized monitoring and automation.
+
+Components:
+- VPC (2 public subnets + 2 private subnets across 2 AZs)
+- ALB (public) -> Auto Scaling Group of EC2 (in private subnets via NAT)
+- RDS (Multi-AZ) in private subnets
+- CloudWatch: logs, metrics, dashboards
+- SNS for alerting -> email or Slack (via webhook)
+- Lambda: idle-check automation (stop dev EC2)
+- S3: Terraform remote state, logs archive
+- IAM: least-privilege roles for Lambda, EC2, GitHub Actions role (if using OIDC)
+
+Region: ap-northeast-1 (Tokyo)
+
+Notes:
+- Use Terraform modules under infra/modules
+- Use GitHub Actions for CI/CD
