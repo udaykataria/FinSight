@@ -1,0 +1,23 @@
+# Day 3 - AWS Billing Metrics & Budget Alerts
+
+## Situation
+To ensure cost control and avoid unexpected charges while building the cloud project.
+
+## Task
+Enable AWS billing metrics and set up a budget alert.
+
+## Actions
+- Enabled Cost Explorer in AWS Billing Preferences.
+- Activated Billing Alerts and Billing Metrics in CloudWatch (N. Virginia region).
+- Created a budget of $5/month with email alerts at 80% and 100% usage.
+- Verified EstimatedCharges metric in CloudWatch.
+
+## Results
+- Real-time cost tracking enabled.
+- Alerts set to prevent exceeding free-tier usage.
+- Project is now protected from unexpected billing.
+
+## Tools Used
+- AWS Billing
+- AWS Cost Explorer
+- AWS CloudWatch
