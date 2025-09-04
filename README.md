@@ -107,16 +107,12 @@ cd FinSight-Cloud-monitoring-and-optimization
 
 ---
 
-## 📜 Resume Impact
 
 **STAR Method Summary:**
 - **Situation** – Cloud costs can rise unnoticed in dynamic environments
 - **Task** – Needed to design a monitoring + automation system to control AWS costs
 - **Action** – Built an AWS-native solution using **CloudWatch, Lambda, Cost Explorer API, EventBridge, and IAM least-privilege roles** to track usage, send alerts, and stop idle EC2 automatically
 - **Result** – Delivered a **cost-optimized, automated monitoring system** with daily reporting and dashboards, reducing cloud wastage risk and improving visibility
-
-**Resume Bullet:**  
-*Developed and deployed a cost monitoring & optimization system on AWS (CloudWatch, Lambda, EventBridge, Cost Explorer API) that automated daily cost tracking, sent real-time billing alerts, and stopped idle EC2 instances — improving cost visibility and reducing unnecessary expenses.*
 
 ---
 
@@ -125,15 +121,6 @@ cd FinSight-Cloud-monitoring-and-optimization
 - **Languages:** Python
 - **Infrastructure:** Terraform (optional)
 - **Region:** ap-northeast-1 (Asia Pacific - Tokyo)
-
----
-
-## 📸 Screenshots & Documentation
-Each day folder contains specific implementation details:
-- CloudWatch dashboard configurations
-- Lambda function code and logs
-- IAM policy examples
-- Testing scenarios and results
 
 ---
 
