@@ -1,0 +1,17 @@
+# Day 4 – EC2 Web Server Setup (Nginx)
+
+## S – Situation
+Our AWS EC2 instance was running but did not yet serve any web content.  
+To simulate LaKeel DX’s cloud infrastructure needs, we required a basic HTTP server as a foundation for future applications.
+
+## T – Task
+Set up a cost-efficient, secure, and scalable web server (Nginx) on our AWS Free Tier EC2 instance, verify it works via browser, and prepare it for customization.
+
+## A – Actions
+1. **Started EC2 Instance**
+   - Navigated to AWS Console → EC2 → Selected stopped instance → Start.
+   - Copied updated Public IPv4 address.
+
+2. **Connected via SSH**
+   ```bash
+   ssh -i "my-key.pem" ec2-user@<Public-IP>
