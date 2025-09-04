@@ -105,8 +105,6 @@ cd FinSight-Cloud-monitoring-and-optimization
 - Automation works ✅  
 - Cost tracking works ✅
 
----
-
 
 **STAR Method Summary:**
 - **Situation** – Cloud costs can rise unnoticed in dynamic environments
