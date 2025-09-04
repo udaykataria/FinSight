@@ -68,7 +68,7 @@ CloudWatch Alarm (CPUUtilization < 5%)
 ### Prerequisites
 - AWS Account (Free Tier)
 - AWS CLI configured
-- Terraform (optional)
+- Terraform 
 
 ### Repository Setup
 ```bash
@@ -96,9 +96,6 @@ cd FinSight-Cloud-monitoring-and-optimization
 - CloudWatch Alarm triggered Lambda → EC2 stopped automatically
 - Verified in EC2 console + Lambda logs
 
-### Cost Spike Simulation
-- Uploaded fake high-cost JSON to S3 (`$150` for EC2)
-- Verified GitHub `/daily-costs/` updated with new cost entry
 
 ✅ **Proven Results:**
 - Monitoring works ✅
