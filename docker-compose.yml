@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  finsight-cost-monitor:
+    build: .
+    environment:
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION:-us-east-1}
+    volumes:
+      - ./daily-costs:/app/daily-costs
+      - ./logs:/app/logs
+    command: python src/scripts/fetch_daily_costs.py
+    restart: unless-stopped
+
+  finsight-dev:
+    build: .
+    environment:
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION:-us-east-1}
+    volumes:
+      - .:/app
+      - /app/.git
+    command: bash
+    stdin_open: true
+    tty: true
+
+  finsight-test:
+    build: .
+    volumes:
+      - .:/app
+    command: pytest tests/ -v
+    environment:
+      - PYTHONPATH=/app/src

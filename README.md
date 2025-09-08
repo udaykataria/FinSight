@@ -1,11 +1,17 @@
 # 💸 FinSight — Cloud Monitoring & Cost Optimization (AWS)
 
+[![CI/CD Pipeline](https://github.com/udaykataria/FinSight-Cloud-monitoring-and-optimization/actions/workflows/ci.yml/badge.svg)](https://github.com/udaykataria/FinSight-Cloud-monitoring-and-optimization/actions/workflows/ci.yml)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
 ## 📌 Overview
 FinSight is a **cloud cost monitoring and optimization project** built on AWS. It tracks daily usage, detects cost spikes, automates idle resource shutdown, and provides a **single CloudWatch dashboard** for cost + performance visibility.
 
 ✅ Inspired by real-world Cloud Engineer responsibilities  
 ✅ Implemented with **automation, monitoring, and security-first design**  
-✅ Deployed fully on **AWS Free Tier**
+✅ Deployed fully on **AWS Free Tier**  
+✅ **Professional repository structure** with CI/CD, testing, and documentation
 
 ---
 
@@ -30,6 +36,45 @@ CloudWatch Alarm (CPUUtilization < 5%)
 
 ---
 
+## 📂 Project Structure
+
+```
+FinSight-Cloud-monitoring-and-optimization/
+├── 📁 src/                         # Source code
+│   ├── 📁 lambdas/                 # AWS Lambda functions
+│   │   └── stop_idle_ec2.py
+│   ├── 📁 scripts/                 # Utility scripts
+│   │   └── fetch_daily_costs.py
+│   └── 📁 terraform/               # Infrastructure as Code
+│       └── provider.tf
+├── 📁 tests/                       # Comprehensive tests
+│   ├── test_stop_idle_ec2.py
+│   ├── test_fetch_daily_costs.py
+│   └── conftest.py
+├── 📁 docs/                        # Documentation
+│   ├── dashboard-setup.md
+│   └── dashboard-config.json
+├── 📁 daily-progress/              # Implementation journal
+│   ├── day1-architecture/
+│   ├── day2/ ... day10/
+│   └── DAY1_NOTES.md
+├── 📁 .github/                     # GitHub templates & workflows
+│   ├── workflows/ci.yml
+│   ├── ISSUE_TEMPLATE/
+│   └── pull_request_template.md
+├── 📄 README.md                    # This file
+├── 📄 CONTRIBUTING.md              # Contribution guidelines
+├── 📄 LICENSE                      # MIT License
+├── 📄 requirements.txt             # Python dependencies
+├── 📄 setup.py                     # Package configuration
+├── 📄 Dockerfile                   # Container configuration
+├── 📄 docker-compose.yml           # Multi-container setup
+├── 📄 Makefile                     # Development commands
+└── 📄 .pre-commit-config.yaml      # Code quality hooks
+```
+
+---
+
 ## 🔑 Key Features
 1. **Daily Cost Tracking** (Lambda + Cost Explorer API)
 2. **Billing Alerts** (SNS notifications when thresholds breached)
@@ -37,29 +82,8 @@ CloudWatch Alarm (CPUUtilization < 5%)
 4. **CloudWatch Dashboard** (cost trends + usage metrics)
 5. **Testing Simulations** (high usage, cost spikes, idle states)
 6. **Security** (IAM least-privilege roles)
-
----
-
-## ⚙️ How It Works
-1. CloudWatch/EventBridge triggers **daily Lambda** → fetches billing cost via Cost Explorer → logs cost → optional save to S3
-2. If cost > threshold → **SNS notification** → email alert
-3. CloudWatch metrics track **EC2 performance & cost trends**
-4. Lambda automation checks idle EC2 → stops instances to save cost
-5. Dashboard aggregates **cost + usage metrics** for visibility
-
----
-
-## 📂 Project Structure & Daily Progress
-- **Day 1:** Initial setup & environment
-- **Day 2:** EC2 Instance Setup & SSH Connection
-- **Day 3:** Custom CloudWatch metrics
-- **Day 4:** Lambda for cost tracker
-- **Day 5:** Daily cost monitoring automation
-- **Day 6:** Stop idle EC2 automation
-- **Day 7:** Testing (high usage/cost/idle simulations)
-- **Day 8:** CloudWatch dashboard
-- **Day 9:** Security & IAM least-privilege
-- **Day 10:** Final documentation & GitHub
+7. **CI/CD Pipeline** (Automated testing and deployment)
+8. **Professional Code Quality** (Linting, formatting, pre-commit hooks)
 
 ---
 
@@ -67,56 +91,167 @@ CloudWatch Alarm (CPUUtilization < 5%)
 
 ### Prerequisites
 - AWS Account (Free Tier)
+- Python 3.8+
 - AWS CLI configured
-- Terraform 
+- Docker (optional)
 
-### Repository Setup
+### Installation
+
+#### Option 1: Local Development
 ```bash
+# Clone repository
 git clone https://github.com/udaykataria/FinSight-Cloud-monitoring-and-optimization.git
 cd FinSight-Cloud-monitoring-and-optimization
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run cost monitoring
+python src/scripts/fetch_daily_costs.py
 ```
 
-### Key Files
-- `day6-automation/stop_idle_ec2.py` → Lambda function to stop idle EC2
-- `python/fetch_daily_costs.py` → Daily cost fetching script
-- `dashboard-config.json` → CloudWatch dashboard configuration
-- `day9/iam-policies.md` → Security policies and IAM setup
-- Various day-specific README files for detailed implementation steps
+#### Option 2: Docker
+```bash
+# Build and run with Docker
+docker-compose up finsight-cost-monitor
+
+# For development
+docker-compose up finsight-dev
+```
+
+#### Option 3: Development Setup
+```bash
+# Complete development setup
+make setup
+make test
+make lint
+```
+
+### Key Files & Usage
+- **Lambda Function**: `src/lambdas/stop_idle_ec2.py` → Deploy to AWS Lambda
+- **Cost Script**: `src/scripts/fetch_daily_costs.py` → Run locally or in Lambda
+- **Dashboard**: `docs/dashboard-config.json` → Import to CloudWatch
+- **Infrastructure**: `src/terraform/` → Deploy with Terraform
 
 ---
 
-## 🧪 Testing & Validation
+## 🧪 Testing & Quality Assurance
+
+### Running Tests
+```bash
+# Run all tests
+make test
+
+# Quick test run
+make test-fast
+
+# Run specific test
+pytest tests/test_stop_idle_ec2.py -v
+```
+
+### Code Quality
+```bash
+# Check code quality
+make lint
+
+# Format code
+make format
+
+# Run all quality checks
+make check
+```
+
+### CI/CD Pipeline
+- ✅ **Automated Testing** on every PR
+- ✅ **Code Quality Checks** (linting, formatting)
+- ✅ **Security Scanning** with Trivy
+- ✅ **Terraform Validation**
+
+---
+
+## 🧪 Validation Results
 
 ### High Usage Simulation
-- Ran `stress` tool on EC2 to push CPU > 70%
-- CloudWatch High-Usage Alarm successfully triggered
+- ✅ Ran `stress` tool on EC2 to push CPU > 70%
+- ✅ CloudWatch High-Usage Alarm successfully triggered
 
 ### Idle State Simulation  
-- Left EC2 idle, CPU < 5% for 15 mins
-- CloudWatch Alarm triggered Lambda → EC2 stopped automatically
-- Verified in EC2 console + Lambda logs
+- ✅ Left EC2 idle, CPU < 5% for 15 mins
+- ✅ CloudWatch Alarm triggered Lambda → EC2 stopped automatically
+- ✅ Verified in EC2 console + Lambda logs
 
+### Testing Coverage
+- ✅ **Unit Tests**: Lambda functions and scripts
+- ✅ **Integration Tests**: AWS service mocking
+- ✅ **End-to-End Tests**: Complete workflow validation
 
-✅ **Proven Results:**
-- Monitoring works ✅
-- Automation works ✅  
-- Cost tracking works ✅
+---
 
+## 📈 STAR Method Summary
 
-**STAR Method Summary:**
 - **Situation** – Cloud costs can rise unnoticed in dynamic environments
 - **Task** – Needed to design a monitoring + automation system to control AWS costs
-- **Action** – Built an AWS-native solution using **CloudWatch, Lambda, Cost Explorer API, EventBridge, and IAM least-privilege roles** to track usage, send alerts, and stop idle EC2 automatically
-- **Result** – Delivered a **cost-optimized, automated monitoring system** with daily reporting and dashboards, reducing cloud wastage risk and improving visibility
+- **Action** – Built an AWS-native solution using **CloudWatch, Lambda, Cost Explorer API, EventBridge, and IAM least-privilege roles** with professional development practices including CI/CD, testing, and documentation
+- **Result** – Delivered a **production-ready, cost-optimized, automated monitoring system** with daily reporting, dashboards, comprehensive testing, and maintainable code structure that reduces cloud wastage risk and improves visibility
 
 ---
 
 ## 🛠️ Technologies Used
-- **AWS Services:** EC2, CloudWatch, Lambda, EventBridge, SNS, Cost Explorer API, S3, IAM
-- **Languages:** Python
-- **Infrastructure:** Terraform (optional)
-- **Region:** ap-northeast-1 (Asia Pacific - Tokyo)
+
+### AWS Services
+- **Compute**: EC2, Lambda
+- **Monitoring**: CloudWatch, SNS
+- **Cost Management**: Cost Explorer API
+- **Security**: IAM
+- **Storage**: S3 (optional)
+- **Automation**: EventBridge
+
+### Development Stack
+- **Language**: Python 3.8+
+- **Testing**: pytest, moto (AWS mocking)
+- **Code Quality**: black, flake8, mypy, pre-commit
+- **CI/CD**: GitHub Actions
+- **Infrastructure**: Terraform
+- **Containerization**: Docker, Docker Compose
+- **Documentation**: Markdown, GitHub Pages ready
+
+### Region
+- **Primary**: ap-northeast-1 (Asia Pacific - Tokyo)
 
 ---
 
-This project demonstrates practical cloud engineering skills including cost optimization, automation, monitoring, and security best practices — all essential capabilities for modern cloud infrastructure management.
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details on:
+- Development setup
+- Code standards
+- Testing requirements
+- Pull request process
+
+### Quick Contribution Setup
+```bash
+# Set up development environment
+make setup
+
+# Make your changes, then
+make check  # Run all quality checks
+```
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 🔗 Links
+
+- 📚 [Documentation](docs/)
+- 🐛 [Report Bug](https://github.com/udaykataria/FinSight-Cloud-monitoring-and-optimization/issues)
+- 💡 [Request Feature](https://github.com/udaykataria/FinSight-Cloud-monitoring-and-optimization/issues)
+- 📈 [Project Roadmap](daily-progress/)
+
+---
+
+This project demonstrates **production-ready cloud engineering skills** including cost optimization, automation, monitoring, security best practices, professional code organization, testing, and CI/CD — all essential capabilities for modern cloud infrastructure management.

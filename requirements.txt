@@ -1,0 +1,18 @@
+# Python Dependencies
+boto3>=1.26.0
+requests>=2.28.0
+python-dotenv>=1.0.0
+
+# Testing Dependencies
+pytest>=7.0.0
+pytest-cov>=4.0.0
+moto[ec2,cloudwatch]>=4.0.0
+
+# Development Dependencies  
+black>=22.0.0
+flake8>=5.0.0
+mypy>=1.0.0
+pre-commit>=3.0.0
+
+# AWS CLI (if needed locally)
+awscli>=1.27.0
